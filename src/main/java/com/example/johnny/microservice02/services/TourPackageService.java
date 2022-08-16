@@ -22,7 +22,7 @@ public class TourPackageService {
      * @return new or existing tour package
      */
     public TourPackage createTourPackage(String code, String name) {
-        return new TourPackage(code, name);
+        return tourPackageRepository.findById(code).orElse(tourPackageRepository.save(new TourPackage(code, name)));
     }
 
     /**
@@ -31,11 +31,11 @@ public class TourPackageService {
      * @return all tour packages
      */
     public Iterable<TourPackage> lookup() {
-        return null;
+        return tourPackageRepository.findAll();
     }
 
     public long total() {
-        return 0;
+        return tourPackageRepository.count();
     }
 
 }
